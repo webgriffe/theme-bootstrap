@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="top.links">
+            <arguments>
+                <argument name="css_class" xsi:type="string">list-inline pull-right</argument>
+            </arguments>
+        </referenceBlock>
+
+        <referenceContainer name="header-wrapper">
+            <container name="navbar-wrapper" htmlTag="nav" htmlClass="navbar navbar-default">
+                <container name="navbar-container" htmlTag="div" htmlClass="container-fluid">
+                    <container name="navbar-header" htmlTag="div" htmlClass="navbar-header">
+                        <block class="Magento\Framework\View\Element\Template" name="nav.toggle"
+                               template="Magento_Theme::html/header/nav.toggle.phtml" before="-">
+                            <arguments>
+                                <argument name="toggle_id" xsi:type="string">wg-navbar-collapse</argument>
+                            </arguments>
+                        </block>
+                        <block class="Magento\Theme\Block\Html\Header\Logo" name="logo" after="nav.toggle">
+                            <arguments>
+                                <argument name="logo_img_width" xsi:type="number">59</argument>
+                                <argument name="logo_img_height" xsi:type="number">20</argument>
+                            </arguments>
+                        </block>
+                    </container>
+                    <container name="navbar-collapse" htmlTag="div" htmlClass="collapse navbar-collapse"
+                               htmlId="wg-navbar-collapse">
+                        <block class="Magento\Theme\Block\Html\Topmenu" name="catalog.topnav"
+                               template="html/topmenu.phtml" ttl="3600" before="-">
+                            <arguments>
+                                <argument name="parent_item_class" xsi:type="string">dropdown</argument>
+                                <argument name="submenu_class" xsi:type="string">dropdown-menu</argument>
+                            </arguments>
+                        </block>
+                    </container>
+                </container>
+            </container>
+        </referenceContainer>
+    </body>
+</page>

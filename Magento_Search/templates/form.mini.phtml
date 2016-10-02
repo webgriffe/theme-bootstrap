@@ -1,0 +1,40 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+?>
+<?php
+/** @var $block \Magento\Framework\View\Element\Template */
+/** @var $helper \Magento\Search\Helper\Data */
+$helper = $this->helper('Magento\Search\Helper\Data');
+?>
+<form class="navbar-form navbar-right" role="search" id="search_mini_form"
+      action="<?php /* @escapeNotVerified */ echo $helper->getResultUrl() ?>" method="get">
+    <div class="form-group">
+        <input data-mage-init='{"quickSearch":{
+                                "formSelector":"#search_mini_form",
+                                "url":"<?php /* @escapeNotVerified */ echo $block->getUrl('search/ajax/suggest', ['_secure' => $block->getRequest()->isSecure()]); ?>",
+                                "destinationSelector":"#search_autocomplete",
+                                "responseFieldElements":"ul li",
+                                "selectClass": "active",
+                                "template": "<li class=\"<%- data.row_class %>\" id=\"qs-option-<%- data.index %>\" role=\"option\"><a href=\"#\" onclick=\"return false;\"><span class=\"qs-option-name\"><%- data.title %></span><span aria-hidden=\"true\" class=\"amount\"><%- data.num_results %></span></a></li>"
+                                }
+                           }'
+               type="text"
+               name="<?php /* @escapeNotVerified */ echo $helper->getQueryParamName() ?>"
+               value="<?php /* @escapeNotVerified */ echo $helper->getEscapedQueryText() ?>"
+               placeholder="<?php /* @escapeNotVerified */ echo __('Search entire store here...'); ?>"
+               class="form-control"
+               maxlength="<?php /* @escapeNotVerified */ echo $helper->getMaxQueryLength();?>"
+               role="combobox"
+               aria-haspopup="false"
+               aria-autocomplete="both"
+               autocomplete="off">
+    </div>
+    <button type="submit" class="btn btn-default"><?php echo $block->escapeHtml(__('Search')) ?></button>
+    <div id="search_autocomplete" class="search-autocomplete"></div>
+    <?php echo $block->getChildHtml() ?>
+</form>

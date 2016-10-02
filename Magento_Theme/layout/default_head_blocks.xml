@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+
+    <head>
+        <remove src="css/styles-m.css" />
+        <remove src="css/styles-l.css" />
+        <remove src="css/print.css" />
+
+        <css src="css/bootstrap.css" />
+        <css src="css/bootstrap-theme.css" />
+        <css src="css/search-autocomplete.css" />
+        <css src="css/minicart.css" />
+        <script src="js/main.js" type="text/javascript" />
+    </head>
+
+</page>
