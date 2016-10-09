@@ -2,14 +2,22 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column"
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
-        <referenceBlock name="top.links">
-            <arguments>
-                <argument name="css_class" xsi:type="string">list-inline pull-right</argument>
-            </arguments>
-        </referenceBlock>
-
         <referenceContainer name="header-wrapper">
-            <container name="navbar-wrapper" htmlTag="nav" htmlClass="navbar navbar-default">
+            <container name="top.links.wrapper" htmlTag="div" htmlClass="top-links-wrapper clearfix hidden-sm hidden-xs" before="-">
+                <referenceBlock name="top.links">
+                    <arguments>
+                        <argument name="css_class" xsi:type="string">list-inline pull-right</argument>
+                    </arguments>
+                </referenceBlock>
+            </container>
+        </referenceContainer>
+        <move element="top.links" destination="top.links.wrapper" before="-" />
+        <move element="skip_to_content" destination="top.links.wrapper" after="top.links" />
+        <referenceContainer name="header.panel.wrapper" remove="true" />
+
+        <referenceBlock name="navigation.sections" remove="true" />
+        <referenceContainer name="header-wrapper">
+            <container name="navbar-wrapper" htmlTag="nav" htmlClass="navbar navbar-default" after="top.links.wrapper">
                 <container name="navbar-container" htmlTag="div" htmlClass="container-fluid">
                     <container name="navbar-header" htmlTag="div" htmlClass="navbar-header">
                         <block class="Magento\Framework\View\Element\Template" name="nav.toggle"
@@ -38,5 +46,27 @@
                 </container>
             </container>
         </referenceContainer>
+        
+        <referenceContainer name="footer-container" htmlClass="page-footer">
+            <container name="footer-row-1" htmlTag="div" htmlClass="row">
+                <container name="footer-links-container" htmlTag="div" htmlClass="col-xs-12 col-md-8">
+
+                </container>
+                <container name="footer-tools-container" htmlTag="div" htmlClass="col-xs-12 col-md-4">
+
+                </container>
+            </container>
+            <container name="footer-row-2" htmlTag="div" htmlClass="row">
+                <container name="footer-legal-container" htmlTag="div" htmlClass="col-xs-12">
+
+                </container>
+            </container>
+        </referenceContainer>
+        <move element="cms_footer_links_container" destination="footer-links-container" />
+        <move element="footer_links" destination="footer-links-container" />
+        <move element="form.subscribe" destination="footer-tools-container" />
+        <move element="store_switcher" destination="footer-tools-container" />
+        <move element="copyright" destination="footer-legal-container" />
+        <move element="report.bugs" destination="footer-legal-container" />
     </body>
 </page>
