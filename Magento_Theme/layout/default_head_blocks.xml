@@ -11,6 +11,7 @@
         <css src="css/bootstrap-theme.css" />
         <css src="css/search-autocomplete.css" />
         <css src="css/minicart.css" />
+        <css src="css/messages.css" />
         <script src="js/main.js" type="text/javascript" />
     </head>
 
