@@ -1,0 +1,47 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+/* @var $block \Magento\Framework\View\Element\Template */
+?>
+<div class="panel panel-default block-compare" data-bind="scope: 'compareProducts'" data-role="compare-products-sidebar">
+    <div class="panel-heading">
+        <span id="block-compare-heading" role="heading" aria-level="2"><?php /* @escapeNotVerified */ echo __('Compare Products') ?></span>
+        <span class="badge counter qty hidden" data-bind="text: compareProducts().countCaption, css: {'hidden': !compareProducts().count}"></span>
+    </div>
+    <!-- ko if: compareProducts().count -->
+        <ul id="compare-items" class="list-group hidden" data-bind="css: {'hidden': !compareProducts().count}, foreach: compareProducts().items">
+            <li class="list-group-item">
+                <input type="hidden" class="compare-item-id" data-bind="value: id"/>
+                <a href="#" data-bind="attr: {'data-post': remove_url}" title="<?php /* @escapeNotVerified */ echo __('Remove This Item') ?>" class="action delete">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </a>
+                <strong class="product-item-name">
+                    <a data-bind="attr: {href: product_url}, html: name" class="product-item-link"></a>
+                </strong>
+            </li>
+        </ul>
+        <div class="panel-footer actions-toolbar">
+            <a data-bind="attr: {'href': compareProducts().listUrl}" class="action compare btn btn-primary">
+                <span class="glyphicon glyphicon-equalizer"></span>
+                <?php /* @escapeNotVerified */ echo __('Compare') ?>
+            </a>
+            <a id="compare-clear-all" href="#" class="action clear btn-link" data-post="<?=$block->escapeHtml(
+                $this->helper('Magento\Catalog\Helper\Product\Compare')->getPostDataClearList()
+            ) ?>">
+                <?php /* @escapeNotVerified */ echo __('Clear All') ?>
+            </a>
+        </div>
+    <!-- /ko -->
+    <!-- ko ifnot: compareProducts().count -->
+        <div class="panel-body">
+            <div class="empty"><?php /* @escapeNotVerified */ echo __('You have no items to compare.') ?></div>
+        </div>
+    <!-- /ko -->
+</div>
+<script type="text/x-magento-init">
+{"[data-role=compare-products-sidebar]": {"Magento_Ui/js/core/app": <?php /* @escapeNotVerified */ echo $block->getJsLayout();?>}}
+</script>
