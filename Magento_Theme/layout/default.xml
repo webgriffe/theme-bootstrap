@@ -48,6 +48,8 @@
         </referenceContainer>
         
         <referenceContainer name="footer-container" htmlClass="page-footer">
+            <block name="footer-hr" class="Magento\Framework\View\Element\Template"
+                   template="Magento_Theme::html/footer/hr.phtml"/>
             <container name="footer-row-1" htmlTag="div" htmlClass="row">
                 <container name="footer-links-container" htmlTag="div" htmlClass="col-xs-12 col-md-8">
 
