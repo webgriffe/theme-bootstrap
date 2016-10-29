@@ -1,0 +1,59 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+/**
+ * Product list toolbar
+ *
+ * @var $block \Magento\Catalog\Block\Product\ProductList\Toolbar
+ */
+use Magento\Catalog\Model\Product\ProductList\Toolbar;
+?>
+<?php if ($block->isEnabledViewSwitcher()): ?>
+    <div class="modes">
+        <?php $_modes = $block->getModes(); ?>
+        <?php if ($_modes && count($_modes) > 1): ?>
+            <strong class="modes-label" id="modes-label"><?php /* @escapeNotVerified */ echo __('View as') ?></strong>
+            &nbsp;
+            <div class="btn-group btn-group-sm" role="group">
+                <?php foreach ($block->getModes() as $_code => $_label): ?>
+                    <?php $_icon = null ?>
+                    <?php if ($_code === 'grid'): ?>
+                        <?php $_icon = 'glyphicon glyphicon-th' ?>
+                    <?php elseif ($_code === 'list'): ?>
+                        <?php $_icon = 'glyphicon glyphicon-th-list' ?>
+                    <?php endif; ?>
+                    <?php if ($block->isModeActive($_code)): ?>
+                        <a href="#" title="<?php /* @escapeNotVerified */ echo $_label ?>"
+                                class="modes-mode active mode-<?php /* @escapeNotVerified */ echo strtolower($_code); ?> btn btn-default"
+                                data-value="<?php /* @escapeNotVerified */ echo strtolower($_code); ?>">
+                            <?php if ($_icon): ?>
+                                <span class="<?php echo $_icon ?>"></span>
+                            <?php endif; ?>
+                            <?php /* @escapeNotVerified */ echo $_label ?>
+                        </a>
+                    <?php else: ?>
+                        <a class="modes-mode mode-<?php /* @escapeNotVerified */ echo strtolower($_code); ?> btn btn-default"
+                           title="<?php /* @escapeNotVerified */ echo $_label ?>"
+                           href="#"
+                           data-role="mode-switcher"
+                           data-value="<?php /* @escapeNotVerified */ echo strtolower($_code); ?>"
+                           id="mode-<?php /* @escapeNotVerified */ echo strtolower($_code); ?>"
+                           aria-labelledby="modes-label mode-<?php /* @escapeNotVerified */ echo strtolower($_code); ?>">
+                            <?php if ($_icon): ?>
+                                <span class="<?php echo $_icon ?>"></span>
+                            <?php endif; ?>
+                            <?php /* @escapeNotVerified */ echo $_label ?>
+                        </a>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
+    </div>
+<?php endif; ?>
