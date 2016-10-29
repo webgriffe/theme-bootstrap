@@ -1,0 +1,53 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+/**
+ * Category layered navigation state
+ *
+ * @var $block \Magento\LayeredNavigation\Block\Navigation\State
+ */
+?>
+<?php $_filters = $block->getActiveFilters() ?>
+<?php if (!empty($_filters)): ?>
+<div class="filter-current">
+    <h4 class="block-subtitle filter-current-subtitle"
+            role="heading"
+            aria-level="2"
+            data-count="<?php echo count($_filters); ?>"><?php /* @escapeNotVerified */ echo __('Now Shopping by') ?></h4>
+    <ul class="items">
+        <?php foreach ($_filters as $_filter): ?>
+            <li class="item">
+                <span class="filter-label"><?php echo $block->escapeHtml(__($_filter->getName())); ?></span>
+                <span class="filter-value label label-default"><?php /* @escapeNotVerified */ echo $block->stripTags($_filter->getLabel()) ?></span>
+                <?php
+                $clearLinkUrl = $_filter->getClearLinkUrl();
+                $currentFilterName = $block->escapeHtml(__($_filter->getName())) . " " . $block->stripTags($_filter->getLabel());
+                if ($clearLinkUrl):
+                    ?>
+                    <a class="action previous btn btn-default btn-xs" href="<?php /* @escapeNotVerified */ echo $_filter->getRemoveUrl() ?>"
+                       title="<?php /* @escapeNotVerified */ echo __('Previous') ?>">
+                        <span class="glyphicon glyphicon-backward"></span>
+                    </a>
+                    <a class="action remove btn btn-default btn-xs"
+                       title="<?php echo $block->escapeHtml($_filter->getFilter()->getClearLinkText()) ?>"
+                       href="<?php /* @escapeNotVerified */ echo $clearLinkUrl ?>">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </a>
+                <?php else: ?>
+                    <a class="action remove btn btn-default btn-xs" href="<?php /* @escapeNotVerified */ echo $_filter->getRemoveUrl() ?>"
+                       title="<?php /* @escapeNotVerified */ echo $block->escapeHtml(__('Remove')) . " " . $currentFilterName;?>">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </a>
+                <?php endif; ?>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+</div>
+<?php endif; ?>
