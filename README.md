@@ -1,0 +1,3 @@
+## Magento 2 theme based on Bootstrap
+
+Work in progress...
