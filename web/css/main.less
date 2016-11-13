@@ -1,0 +1,75 @@
+@import "bootstrap/_variables.less";
+@import "bootstrap/_mixins.less";
+@import "bootstrap/mixins/_alerts.less";
+@import (reference) "bootstrap/_dropdowns.less";
+@import (reference) "bootstrap/_badges.less";
+
+// Minicart
+.showcart .empty.badge {
+  display: none;
+}
+
+.showcart .counter-label {
+  display: none;
+}
+
+.minicart-panel .panel {
+  position: absolute;
+  top: @navbar-height + 3px;
+  right: 0;
+  width: 300px;
+}
+
+.minicart-panel .panel .panel-heading .close-btn-link {
+  position: relative;
+  top: -3px;
+}
+
+.minicart-panel .panel .panel-heading .badge.empty {
+  display: none;
+}
+
+// Messages
+.alert-notice {
+  .alert-variant(@alert-info-bg; @alert-info-border; @alert-info-text);
+}
+
+.alert-error {
+  .alert-variant(@alert-danger-bg; @alert-danger-border; @alert-danger-text);
+}
+
+// Search Autocomplete
+.search-autocomplete ul {
+  &:extend(.dropdown-menu all);
+  display: block;
+}
+
+.search-autocomplete ul li span.amount {
+  &:extend(.badge all);
+  position: absolute;
+  right: 20px;
+  top: 10px;
+}
+
+// Products Toolbar
+.toolbar-products .pages {
+  display: none;
+}
+.products.wrapper ~ .toolbar-products .pages {
+  display: block;
+}
+
+.page-products .toolbar .limiter {
+  display: none;
+}
+.products.wrapper ~ .toolbar .limiter {
+  display: block;
+}
+
+.products.wrapper ~ .toolbar .modes {
+  display: none;
+}
+
+.products.wrapper ~ .toolbar .sorter {
+  display: none;
+}

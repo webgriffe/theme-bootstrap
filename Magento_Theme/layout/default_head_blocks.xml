@@ -12,6 +12,7 @@
         <css src="css/search-autocomplete.css" />
         <css src="css/minicart.css" />
         <css src="css/messages.css" />
+        <css src="css/main.css" />
         <script src="js/main.js" type="text/javascript" />
     </head>
 
