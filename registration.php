@@ -2,6 +2,6 @@
 
 \Magento\Framework\Component\ComponentRegistrar::register(
     \Magento\Framework\Component\ComponentRegistrar::THEME,
-    'frontend/Webgriffe/blank',
+    'frontend/Webgriffe/bootstrap',
     __DIR__
 );
