@@ -1,0 +1,17 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+<?php /** @var $block \Magento\Catalog\Block\Product\Image */ ?>
+
+<span class="product-image-container">
+    <span class="product-image-wrapper">
+        <img class="product-image-photo img-responsive"
+            <?php /* @escapeNotVerified */ echo $block->getCustomAttributes(); ?>
+             src="<?php /* @escapeNotVerified */ echo $block->getImageUrl(); ?>"
+             width="<?php /* @escapeNotVerified */ echo $block->getResizedImageWidth(); ?>"
+             height="<?php /* @escapeNotVerified */ echo $block->getResizedImageHeight(); ?>"
+             alt="<?php /* @escapeNotVerified */ echo $block->stripTags($block->getLabel(), null, true); ?>"/></span>
+</span>
