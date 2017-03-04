@@ -9,6 +9,7 @@
 
         <css src="css/bootstrap.css" />
         <css src="css/bootstrap-theme.css" />
+        <css src="css/bootstrap-addons.css" />
         <css src="css/bootstrap-magento.css" />
         <script src="js/main.js" type="text/javascript" />
     </head>
