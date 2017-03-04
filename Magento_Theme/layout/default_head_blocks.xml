@@ -9,10 +9,7 @@
 
         <css src="css/bootstrap.css" />
         <css src="css/bootstrap-theme.css" />
-        <css src="css/search-autocomplete.css" />
-        <css src="css/minicart.css" />
-        <css src="css/messages.css" />
-        <css src="css/main.css" />
+        <css src="css/bootstrap-magento.css" />
         <script src="js/main.js" type="text/javascript" />
     </head>
 
