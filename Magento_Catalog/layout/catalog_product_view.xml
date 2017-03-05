@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <move element="product.info.media" destination="main.row" before="-" />
+        <move element="product.info.main" destination="main.row" after="product.info.media" />
+        <move element="page.main.title" destination="product.info.main" before="-" />
+        <move element="product.info.details" destination="details.col" before="-" />
+        <referenceContainer name="content">
+            <container name="main.row" htmlTag="div" htmlClass="row">
+                <referenceContainer name="product.info.media" htmlClass="col-xs-12 col-sm-7 product media" />
+                <referenceContainer name="product.info.main" htmlClass="col-xs-12 col-sm-5 product-info-main" />
+            </container>
+            <container name="details.row" htmlTag="div" htmlClass="row">
+                <container name="details.col" htmlTag="div" htmlClass="col-xs-12" />
+            </container>
+        </referenceContainer>
+    </body>
+</page>
