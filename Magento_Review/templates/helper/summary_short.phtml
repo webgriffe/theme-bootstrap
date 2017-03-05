@@ -13,14 +13,14 @@
 <?php $rating = $block->getRatingSummary(); ?>
 <div class="row product-reviews-summary short<?php echo !$rating ? ' no-rating' : ''?>">
     <?php if ($rating):?>
-    <div class="col-xs-4 rating-summary">
+    <div class="col-xs-12 col-sm-5 col-md-4 rating-summary">
         <span class="label"><span><?php /* @escapeNotVerified */ echo __('Rating') ?>:</span></span>
         <div class="rating-result" title="<?php /* @escapeNotVerified */ echo $rating; ?>%">
             <span style="width:<?php /* @escapeNotVerified */ echo $rating; ?>%"><span><?php /* @escapeNotVerified */ echo $rating; ?>%</span></span>
         </div>
     </div>
     <?php endif;?>
-    <div class="col-xs-4 reviews-actions">
+    <div class="col-xs-12 col-sm-7 col-md-8 reviews-actions">
         <small><a class="action view" href="<?php /* @escapeNotVerified */ echo $url ?>"><?php /* @escapeNotVerified */ echo $block->getReviewsCount() ?>&nbsp;<span><?php /* @escapeNotVerified */ echo($block->getReviewsCount() == 1) ? __('Review') : __('Reviews') ?></span></a></small>
     </div>
 </div>

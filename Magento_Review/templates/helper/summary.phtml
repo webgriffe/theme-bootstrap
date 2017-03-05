@@ -13,16 +13,22 @@
 <?php $rating = $block->getRatingSummary(); ?>
 <div class="row product-reviews-summary<?php echo !$rating ? ' no-rating' : ''?>" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
     <?php if ($rating):?>
-    <div class="col-xs-4 rating-summary">
+    <div class="col-sm-3 col-xs-12 rating-summary">
          <span class="label"><span><?php /* @escapeNotVerified */ echo __('Rating') ?>:</span></span>
          <div class="rating-result" title="<?php /* @escapeNotVerified */ echo $rating; ?>%">
              <span style="width:<?php /* @escapeNotVerified */ echo $rating; ?>%"><span><span itemprop="ratingValue"><?php /* @escapeNotVerified */ echo $rating; ?></span>% of <span itemprop="bestRating">100</span></span></span>
          </div>
      </div>
     <?php endif;?>
-    <div class="col-xs-4 reviews-actions">
+    <div class="col-sm-9 col-xs-12 reviews-actions">
         <small><a class="action view" href="<?php /* @escapeNotVerified */ echo $url ?>"><span itemprop="reviewCount"><?php /* @escapeNotVerified */ echo $block->getReviewsCount() ?></span>&nbsp;<span><?php /* @escapeNotVerified */ echo($block->getReviewsCount() == 1) ? __('Review') : __('Reviews') ?></span></a></small>
-        <small><a class="action add" href="<?php /* @escapeNotVerified */ echo $urlForm ?>"><?php /* @escapeNotVerified */ echo __('Add Your Review') ?></a></small>
+        <small>
+            |
+            <a class="action add" href="<?php /* @escapeNotVerified */ echo $urlForm ?>">
+                <small><span class="glyphicon glyphicon-pencil"></span></small>
+                <?php /* @escapeNotVerified */ echo __('Add Your') ?>
+            </a>
+        </small>
     </div>
 </div>
 <?php elseif ($block->getDisplayIfEmpty()): ?>
