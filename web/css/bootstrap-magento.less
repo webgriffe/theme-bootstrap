@@ -78,3 +78,179 @@
 .products.wrapper ~ .toolbar .sorter {
   display: none;
 }
+
+// Rating
+@rating-icon__count: 5;
+@rating-icon__content: "\e006";
+@rating-icon__font: 'Glyphicons Halflings';
+@rating-icon__font-size: 14px;
+@rating-icon__letter-spacing: -2px;
+@rating-icon__color: @gray-lighter;
+@rating-icon__active__color: @brand-primary;
+@rating-label__hide: false;
+
+//  Rating-summary mixin
+.lib-rating-summary(
+  @_icon-count: @rating-icon__count,
+  @_icon-content: @rating-icon__content,
+  @_icon-font: @rating-icon__font,
+  @_icon-font-size: @rating-icon__font-size,
+  @_icon-letter-spacing: @rating-icon__letter-spacing,
+  @_icon-color: @rating-icon__color,
+  @_icon-color-active: @rating-icon__active__color,
+  @_label-hide: @rating-label__hide
+) {
+  overflow: hidden;
+  white-space: nowrap;
+  ._lib-rating-label-hide(@_label-hide);
+
+  .rating-result {
+    width: (@_icon-font-size * @_icon-count) + ceil(@_icon-letter-spacing * (@_icon-count - 1));
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+
+    &:before {
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 100%;
+      z-index: 1;
+      ._lib-rating-summary-icon-default(
+              @_icon-font,
+              @_icon-font-size,
+              @_icon-letter-spacing,
+              @_icon-count,
+              @_icon-content,
+              @_icon-color
+      );
+    }
+
+    > span {
+      display: block;
+      overflow: hidden;
+
+      &:before {
+        position: relative;
+        z-index: 2;
+        ._lib-rating-summary-icon-default(
+                @_icon-font,
+                @_icon-font-size,
+                @_icon-letter-spacing,
+                @_icon-count,
+                @_icon-content,
+                @_icon-color-active
+        );
+      }
+
+      span {
+        border: 0;
+        clip: rect(0, 0, 0, 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+      }
+    }
+  }
+}
+
+.lib-rating-summary-label-hide() {
+  .label {
+    border: 0;
+    clip: rect(0, 0, 0, 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+}
+
+//  Internal use mixins
+._lib-rating-label-hide(@_label-hide) when (@_label-hide = true) {
+  .lib-rating-summary-label-hide();
+}
+
+._lib-rating-iteration(
+  @_icon-content,
+  @_icon-count
+) {
+  .loopingClass (@_index) when (@_index > 0) {
+    .rating-@{_index} {
+      z-index: @_icon-count - (@_index - 2);
+
+      &:before {
+        .lib-rating-icons-content(@_index, @_icon-content);
+      }
+    }
+    //  Next iteration
+    .loopingClass(@_index - 1);
+  }
+
+  .loopingClass (0) {}
+  .loopingClass (@_icon-count);
+}
+
+._lib-rating-icon-defalt(
+  @_icon-font,
+  @_icon-font-size,
+  @_icon-letter-spacing,
+  @_icon-color
+) {
+  color: @_icon-color;
+  font-family: @_icon-font;
+  font-size: @_icon-font-size;
+  height: @_icon-font-size;
+  letter-spacing: @_icon-letter-spacing;
+  line-height: @_icon-font-size;
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+  vertical-align: top;
+  -webkit-font-smoothing: antialiased;
+}
+
+._lib-rating-summary-icon-default(
+  @_icon-font,
+  @_icon-font-size,
+  @_icon-letter-spacing,
+  @_icon-count,
+  @_icon-content,
+  @_icon-color
+) {
+  -webkit-font-smoothing: antialiased;
+  color: @_icon-color;
+  font-family: @_icon-font;
+  font-size: @_icon-font-size;
+  height: @_icon-font-size;
+  letter-spacing: @_icon-letter-spacing;
+  line-height: @_icon-font-size;
+  .lib-rating-icons-content(@_icon-count, @_icon-content);
+  display: block;
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+}
+
+.lib-rating-icons-content(
+  @_icon-count: @rating-icon__count,
+  @_icon-content: @rating-icon__content
+) when (@_icon-count > 0) {
+  .lib-rating-icons-content((@_icon-count - 1),@_icon-content);
+  content+_: @_icon-content;
+}
+
+.rating-summary {
+  .lib-rating-summary();
+}
+
+.product-reviews-summary,
+.table-reviews {
+  .rating-summary {
+    .lib-rating-summary-label-hide();
+  }
+}
