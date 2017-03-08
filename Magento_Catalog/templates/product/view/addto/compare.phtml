@@ -1,0 +1,19 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var $block \Magento\Catalog\Block\Catalog\Product\View\Addto\Compare */
+?>
+
+<div class="col-md-4 col-xs-12">
+    <a href="#" data-post='<?php /* @escapeNotVerified */ echo $block->getPostDataParams();?>'
+            data-role="add-to-links"
+            class="action tocompare">
+        <span class="glyphicon glyphicon-equalizer"></span>
+        <span><?php /* @escapeNotVerified */ echo __('Add to Compare') ?></span>
+    </a>
+</div>

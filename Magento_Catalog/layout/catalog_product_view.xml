@@ -13,6 +13,7 @@
             <container name="details.row" htmlTag="div" htmlClass="row">
                 <container name="details.col" htmlTag="div" htmlClass="col-xs-12" />
             </container>
+            <referenceContainer name="product.info.extrahint" htmlTag="div" htmlClass="row" />
         </referenceContainer>
     </body>
 </page>
