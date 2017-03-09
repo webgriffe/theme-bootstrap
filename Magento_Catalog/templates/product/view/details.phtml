@@ -1,0 +1,59 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php if ($detailedInfoGroup = $block->getGroupChildNames('detailed_info', 'getChildHtml')):?>
+    <div>
+        <?php $layout = $block->getLayout(); ?>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <?php $active = true; ?>
+            <?php foreach ($detailedInfoGroup as $name):?>
+                <?php
+                    $html = $layout->renderElement($name);
+                    if (!trim($html)) {
+                        continue;
+                    }
+                    $alias = $layout->getElementAlias($name);
+                    $elementId = str_replace('.', '-', $alias);
+                    $label = $block->getChildData($alias, 'title');
+                ?>
+                <li role="presentation" class="<?php if ($active): ?>active<?php endif; ?>">
+                    <a href="#<?php /* @escapeNotVerified */ echo $elementId ?>"
+                       aria-controls="<?php /* @escapeNotVerified */ echo $elementId ?>"
+                       role="tab"
+                       data-toggle="tab">
+                        <?php /* @escapeNotVerified */ echo $label; ?>
+                    </a>
+                </li>
+                <?php $active = false; ?>
+            <?php endforeach; ?>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <?php $active = true; ?>
+            <?php foreach ($detailedInfoGroup as $name):?>
+                <?php
+                    $html = $layout->renderElement($name);
+                    if (!trim($html)) {
+                        continue;
+                    }
+                    $alias = $layout->getElementAlias($name);
+                    $elementId = str_replace('.', '-', $alias);
+                    $label = $block->getChildData($alias, 'title');
+                ?>
+                <div role="tabpanel" class="tab-pane <?php if ($active): ?>active<?php endif; ?>"
+                     id="<?php /* @escapeNotVerified */ echo $elementId; ?>">
+                    <?php /* @escapeNotVerified */ echo $html; ?>
+                </div>
+                <?php $active = false; ?>
+            <?php endforeach; ?>
+        </div>
+    </div>
+<?php endif; ?>
