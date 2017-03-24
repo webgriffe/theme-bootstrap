@@ -1,0 +1,19 @@
+<?php
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/* @var \Magento\Wishlist\Model\Item $item */
+
+$item = $block->getItem();
+?>
+<div class="form-group field comment-box">
+    <label class="label" for="product-item-comment-<?php /* @escapeNotVerified */ echo $item->getWishlistItemId() ?>">
+        <span><?php /* @escapeNotVerified */ echo __('Comment') ?></span>
+    </label>
+
+    <textarea id="product-item-comment-<?php /* @escapeNotVerified */ echo $item->getWishlistItemId() ?>" placeholder="<?php /* @escapeNotVerified */ echo $this->helper('Magento\Wishlist\Helper\Data')->defaultCommentString() ?>" name="description[<?php /* @escapeNotVerified */ echo $item->getWishlistItemId() ?>]" title="<?php /* @escapeNotVerified */ echo __('Comment') ?>" class="form-control"><?php echo($block->escapeHtml($item->getDescription())) ?></textarea>
+</div>
