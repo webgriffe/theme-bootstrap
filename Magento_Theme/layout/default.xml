@@ -19,7 +19,6 @@
         <referenceBlock name="navigation.sections" remove="true" />
         <move element="breadcrumbs" destination="main.content" before="-" />
 
-
         <referenceContainer name="header.container">
             <container name="sub.header.container" htmlTag="div" htmlClass="container">
                 <container name="navbar-wrapper" htmlTag="nav" htmlClass="navbar navbar-default" after="top.links.wrapper">
@@ -38,8 +37,7 @@
                                 </arguments>
                             </block>
                         </container>
-                        <container name="navbar-collapse" htmlTag="div" htmlClass="collapse navbar-collapse"
-                                   htmlId="wg-navbar-collapse">
+                        <container name="navbar-collapse" htmlTag="div" htmlClass="collapse navbar-collapse" htmlId="wg-navbar-collapse">
                             <block class="Magento\Theme\Block\Html\Topmenu" name="catalog.topnav"
                                    template="html/topmenu.phtml" ttl="3600" before="-">
                                 <arguments>
