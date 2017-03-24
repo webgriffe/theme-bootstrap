@@ -1,0 +1,161 @@
+<?php
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+/**
+ * Edit customer address template
+ *
+ * @var $block \Magento\Customer\Block\Address\Edit
+ */
+?>
+<form class="form-address-edit" action="<?php /* @escapeNotVerified */ echo $block->getSaveUrl() ?>" method="post" id="form-validate" enctype="multipart/form-data" data-hasrequired="<?php /* @escapeNotVerified */ echo __('* Required Fields') ?>">
+    <fieldset class="fieldset">
+        <legend class="legend"><span><?php /* @escapeNotVerified */ echo __('Contact Information') ?></span></legend><br>
+        <?php echo $block->getBlockHtml('formkey')?>
+        <input type="hidden" name="success_url" value="<?php /* @escapeNotVerified */ echo $block->getSuccessUrl() ?>">
+        <input type="hidden" name="error_url" value="<?php /* @escapeNotVerified */ echo $block->getErrorUrl() ?>">
+        <?php echo $block->getNameBlockHtml() ?>
+        
+        <div class="form-group field company">
+            <label for="company"><span><?php /* @escapeNotVerified */ echo __('Company') ?></span></label>
+            <div class="control">
+                <input type="text" name="company" id="company" title="<?php /* @escapeNotVerified */ echo __('Company') ?>" value="<?php echo $block->escapeHtml($block->getAddress()->getCompany()) ?>" class="form-control <?php /* @escapeNotVerified */ echo $this->helper('Magento\Customer\Helper\Address')->getAttributeValidationClass('company') ?>">
+            </div>
+        </div>
+
+        <div class="form-group field telephone required">
+            <label for="telephone"><span><?php /* @escapeNotVerified */ echo __('Phone Number') ?></span></label>
+            <div class="control">
+                <input type="text" name="telephone" value="<?php echo $block->escapeHtml($block->getAddress()->getTelephone()) ?>" title="<?php /* @escapeNotVerified */ echo __('Phone Number') ?>" class="form-control <?php /* @escapeNotVerified */ echo $this->helper('Magento\Customer\Helper\Address')->getAttributeValidationClass('telephone') ?>" id="telephone">
+            </div>
+        </div>
+
+        <div class="form-group field fax">
+            <label for="fax"><span><?php /* @escapeNotVerified */ echo __('Fax') ?></span></label>
+            <div class="control">
+                <input type="text" name="fax" id="fax" title="<?php /* @escapeNotVerified */ echo __('Fax') ?>" value="<?php echo $block->escapeHtml($block->getAddress()->getFax()) ?>" class="form-control <?php /* @escapeNotVerified */ echo $this->helper('Magento\Customer\Helper\Address')->getAttributeValidationClass('fax') ?>">
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset class="fieldset">
+        <legend class="legend"><span><?php /* @escapeNotVerified */ echo __('Address') ?></span></legend><br>
+        <?php $_streetValidationClass = $this->helper('Magento\Customer\Helper\Address')->getAttributeValidationClass('street'); ?>
+        <div class="form-group field street required">
+            <label for="street_1"><span><?php /* @escapeNotVerified */ echo __('Street Address') ?></span></label>
+            <div class="control">
+                <input type="text" name="street[]" value="<?php echo $block->escapeHtml($block->getStreetLine(1)) ?>" title="<?php /* @escapeNotVerified */ echo __('Street Address') ?>" id="street_1" class="form-control <?php /* @escapeNotVerified */ echo $_streetValidationClass ?>"  />
+                <div class="nested">
+                    <?php $_streetValidationClass = trim(str_replace('required-entry', '', $_streetValidationClass)); ?>
+                    <?php for ($_i = 1, $_n = $this->helper('Magento\Customer\Helper\Address')->getStreetLines(); $_i < $_n; $_i++): ?>
+                        <div class="field additional">
+                            <label for="street_<?php /* @escapeNotVerified */ echo $_i+1 ?>">
+                                <span><?php /* @escapeNotVerified */ echo __('Street Address %1', $_i+1) ?></span>
+                            </label>
+                            <div class="control">
+                                <input type="text" name="street[]" value="<?php echo $block->escapeHtml($block->getStreetLine($_i+1)) ?>" title="<?php /* @escapeNotVerified */ echo __('Street Address %1', $_i+1) ?>" id="street_<?php /* @escapeNotVerified */ echo $_i+1 ?>" class="form-control <?php /* @escapeNotVerified */ echo $_streetValidationClass ?>">
+                            </div>
+                        </div>
+                    <?php endfor; ?>
+                </div>
+            </div>
+        </div>
+
+        <?php if ($this->helper('Magento\Customer\Helper\Address')->isVatAttributeVisible()) : ?>
+            <div class="form-group field taxvat">
+                <label for="vat_id"><span><?php /* @escapeNotVerified */ echo __('VAT Number') ?></span></label>
+                <div class="control">
+                    <input type="text" name="vat_id" value="<?php echo $block->escapeHtml($block->getAddress()->getVatId()) ?>" title="<?php /* @escapeNotVerified */ echo __('VAT Number') ?>" class="form-control <?php /* @escapeNotVerified */ echo $this->helper('Magento\Customer\Helper\Address')->getAttributeValidationClass('vat_id') ?>" id="vat_id">
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <div class="form-group field city required">
+            <label for="city"><span><?php /* @escapeNotVerified */ echo __('City') ?></span></label>
+            <div class="control">
+                <input type="text" name="city" value="<?php echo $block->escapeHtml($block->getAddress()->getCity()) ?>" title="<?php /* @escapeNotVerified */ echo __('City') ?>" class="form-control <?php /* @escapeNotVerified */ echo $this->helper('Magento\Customer\Helper\Address')->getAttributeValidationClass('city') ?>" id="city">
+            </div>
+        </div>
+
+        <div class="form-group field region required">
+            <label for="region_id"><span><?php /* @escapeNotVerified */ echo __('State/Province') ?></span></label>
+            <div class="control">
+                <select id="region_id" name="region_id" title="<?php /* @escapeNotVerified */ echo __('State/Province') ?>" class="validate-select form-control" <?php echo(!$block->getConfig('general/region/display_all')) ? ' disabled="disabled"' : '';?>>
+                    <option value=""><?php /* @escapeNotVerified */ echo __('Please select a region, state or province.') ?></option>
+                </select>
+                <input type="text" id="region" name="region" value="<?php echo $block->escapeHtml($block->getRegion()) ?>"  title="<?php /* @escapeNotVerified */ echo __('State/Province') ?>" class="form-control <?php /* @escapeNotVerified */ echo $this->helper('Magento\Customer\Helper\Address')->getAttributeValidationClass('region') ?>"<?php echo(!$block->getConfig('general/region/display_all')) ? ' disabled="disabled"' : '';?>/>
+            </div>
+        </div>
+
+        <div class="form-group field zip required">
+            <label for="zip"><span><?php /* @escapeNotVerified */ echo __('Zip/Postal Code') ?></span></label>
+            <div class="control">
+                <input type="text" name="postcode" value="<?php echo $block->escapeHtml($block->getAddress()->getPostcode()) ?>" title="<?php /* @escapeNotVerified */ echo __('Zip/Postal Code') ?>" id="zip" class="form-control validate-zip-international <?php /* @escapeNotVerified */ echo $this->helper('Magento\Customer\Helper\Address')->getAttributeValidationClass('postcode') ?>">
+            </div>
+        </div>
+
+        <div class="form-group field country required">
+            <label for="country"><span><?php /* @escapeNotVerified */ echo __('Country') ?></span></label>
+            <div class="control">
+                <?php echo $block->getCountryHtmlSelect() ?>
+            </div>
+        </div>
+
+        <?php if ($block->isDefaultBilling()): ?>
+            <div class="message info"><?php /* @escapeNotVerified */ echo __("It's a default billing address.") ?></div>
+        <?php elseif ($block->canSetAsDefaultBilling()): ?>
+            <div class="form-group field choice set billing">
+                <label for="primary_billing">
+                    <input type="checkbox" id="primary_billing" name="default_billing" value="1" class="checkbox"> <?php /* @escapeNotVerified */ echo __('Use as my default billing address') ?>
+               </label>
+            </div>
+        <?php else: ?>
+            <input type="hidden" name="default_billing" value="1" />
+        <?php endif; ?>
+
+        <?php if ($block->isDefaultShipping()): ?>
+            <div class="message info"><?php /* @escapeNotVerified */ echo __("It's a default shipping address.") ?></div>
+        <?php elseif ($block->canSetAsDefaultShipping()): ?>
+            <div class="form-group field choice set shipping">
+                <input type="checkbox" id="primary_shipping" name="default_shipping" value="1" class="checkbox">
+                <label for="primary_shipping"><span><?php /* @escapeNotVerified */ echo __('Use as my default shipping address') ?></span></label>
+            </div>
+        <?php else: ?>
+            <input type="hidden" name="default_shipping" value="1">
+        <?php endif; ?>
+    </fieldset>
+ 
+    <button type="submit" class="btn btn-primary" data-action="save-address" title="<?php /* @escapeNotVerified */ echo __('Save Address') ?>">
+        <span><?php /* @escapeNotVerified */ echo __('Save Address') ?></span>
+    </button>
+
+    <a class="btn btn-danger" href="<?php echo $block->escapeUrl($block->getBackUrl()) ?>">
+        <span><?php /* @escapeNotVerified */ echo __('Go back') ?></span>
+    </a>
+</form>
+
+<script type="text/x-magento-init">
+    {
+        "#form-validate": {
+            "validation": {}
+        },
+        "#country": {
+            "regionUpdater": {
+                "optionalRegionAllowed": <?php /* @escapeNotVerified */ echo($block->getConfig('general/region/display_all') ? 'true' : 'false'); ?>,
+                "regionListId": "#region_id",
+                "regionInputId": "#region",
+                "postcodeId": "#zip",
+                "form": "#form-validate",
+                "regionJson": <?php /* @escapeNotVerified */ echo $this->helper('Magento\Directory\Helper\Data')->getRegionJson() ?>,
+                "defaultRegion": "<?php /* @escapeNotVerified */ echo $block->getRegionId() ?>",
+                "countriesWithOptionalZip": <?php /* @escapeNotVerified */ echo $this->helper('Magento\Directory\Helper\Data')->getCountriesWithOptionalZip(true) ?>
+            }
+        }
+    }
+</script>

@@ -26,13 +26,15 @@
         <?php if ($_gender->isEnabled()): ?>
             <?php echo $_gender->setGender($block->getCustomer()->getGender())->toHtml() ?>
         <?php endif ?>
-        <div class="field choice">
-            <input type="checkbox" name="change_email" id="change-email" data-role="change-email" value="1" title="<?php /* @escapeNotVerified */ echo __('Change Email') ?>" class="checkbox" />
-            <label for="change-email"><span><?php /* @escapeNotVerified */ echo __('Change Email') ?></span></label>
+        <div class="checkbox">
+            <label for="change-email">
+                <input type="checkbox" name="change_email" id="change-email" data-role="change-email" value="1" title="<?php /* @escapeNotVerified */ echo __('Change Email') ?>" class="checkbox" /> <?php /* @escapeNotVerified */ echo __('Change Email') ?>
+            </label>
         </div>
-        <div class="field choice">
-            <input type="checkbox" name="change_password" id="change-password" data-role="change-password" value="1" title="<?php /* @escapeNotVerified */ echo __('Change Password') ?>"<?php if ($block->getChangePassword()): ?> checked="checked"<?php endif; ?> class="checkbox" />
-            <label for="change-password"><span><?php /* @escapeNotVerified */ echo __('Change Password') ?></span></label>
+        <div class="checkbox">
+            <label for="change-password">
+                <input type="checkbox" name="change_password" id="change-password" data-role="change-password" value="1" title="<?php /* @escapeNotVerified */ echo __('Change Password') ?>"<?php if ($block->getChangePassword()): ?> checked="checked"<?php endif; ?> class="checkbox" /> <?php /* @escapeNotVerified */ echo __('Change Password') ?>
+            </label>
         </div>
     </fieldset>
 
@@ -79,14 +81,12 @@
         </div>
         <?php echo $block->getChildHtml('form_additional_info'); ?>
     </fieldset>
-    <div class="actions-toolbar">
-        <div class="primary">
-            <button type="submit" class="action save primary" title="<?php /* @escapeNotVerified */ echo __('Save') ?>"><span><?php /* @escapeNotVerified */ echo __('Save') ?></span></button>
-        </div>
-        <div class="secondary">
-            <a class="action back" href="<?php echo $block->escapeUrl($block->getBackUrl()) ?>"><span><?php /* @escapeNotVerified */ echo __('Go back') ?></span></a>
-        </div>
-    </div>
+
+
+    <button type="submit" class="btn btn-primary" title="<?php /* @escapeNotVerified */ echo __('Save') ?>"><span><?php /* @escapeNotVerified */ echo __('Save') ?></span></button>
+
+    <a class="btn btn-danger" href="<?php echo $block->escapeUrl($block->getBackUrl()) ?>"><span><?php /* @escapeNotVerified */ echo __('Go back') ?></span></a>
+      
 </form>
 <script>
     require([
