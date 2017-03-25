@@ -2,52 +2,56 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column"
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
-        <referenceContainer name="header-wrapper">
-            <container name="top.links.wrapper" htmlTag="div" htmlClass="top-links-wrapper clearfix hidden-sm hidden-xs" before="-">
+        <referenceContainer name="header-wrapper" htmlTag="nav" htmlClass="navbar navbar-default navbar-static-top">
+            <container name="top.links.wrapper" htmlTag="div" htmlClass="container-fluid" before="-">
                 <referenceBlock name="top.links">
                     <arguments>
-                        <argument name="css_class" xsi:type="string">list-inline pull-right</argument>
+                        <argument name="css_class" xsi:type="string">nav navbar-nav pull-right</argument>
                     </arguments>
                 </referenceBlock>
             </container>
         </referenceContainer>
+        
         <move element="top.links" destination="top.links.wrapper" before="-" />
         <move element="skip_to_content" destination="top.links.wrapper" after="top.links" />
-        <referenceContainer name="header.panel.wrapper" remove="true" />
 
+        <referenceContainer name="header.panel.wrapper" remove="true" />
         <referenceBlock name="navigation.sections" remove="true" />
-        <referenceContainer name="header-wrapper">
-            <container name="navbar-wrapper" htmlTag="nav" htmlClass="navbar navbar-default" after="top.links.wrapper">
-                <container name="navbar-container" htmlTag="div" htmlClass="container-fluid">
-                    <container name="navbar-header" htmlTag="div" htmlClass="navbar-header">
-                        <block class="Magento\Framework\View\Element\Template" name="nav.toggle"
-                               template="Magento_Theme::html/header/nav.toggle.phtml" before="-">
-                            <arguments>
-                                <argument name="toggle_id" xsi:type="string">wg-navbar-collapse</argument>
-                            </arguments>
-                        </block>
-                        <block class="Magento\Theme\Block\Html\Header\Logo" name="logo" after="nav.toggle">
-                            <arguments>
-                                <argument name="logo_img_width" xsi:type="number">59</argument>
-                                <argument name="logo_img_height" xsi:type="number">20</argument>
-                            </arguments>
-                        </block>
-                    </container>
-                    <container name="navbar-collapse" htmlTag="div" htmlClass="collapse navbar-collapse"
-                               htmlId="wg-navbar-collapse">
-                        <block class="Magento\Theme\Block\Html\Topmenu" name="catalog.topnav"
-                               template="html/topmenu.phtml" ttl="3600" before="-">
-                            <arguments>
-                                <argument name="parent_item_class" xsi:type="string">dropdown</argument>
-                                <argument name="submenu_class" xsi:type="string">dropdown-menu</argument>
-                            </arguments>
-                        </block>
+        <move element="breadcrumbs" destination="main.content" before="-" />
+
+        <referenceContainer name="header.container">
+            <container name="sub.header.container" htmlTag="div" htmlClass="container">
+                <container name="navbar-wrapper" htmlTag="nav" htmlClass="navbar navbar-default" after="top.links.wrapper">
+                    <container name="navbar-container" htmlTag="div" htmlClass="container-fluid">
+                        <container name="navbar-header" htmlTag="div" htmlClass="navbar-header">
+                            <block class="Magento\Framework\View\Element\Template" name="nav.toggle"
+                                   template="Magento_Theme::html/header/nav.toggle.phtml" before="-">
+                                <arguments>
+                                    <argument name="toggle_id" xsi:type="string">wg-navbar-collapse</argument>
+                                </arguments>
+                            </block>
+                            <block class="Magento\Theme\Block\Html\Header\Logo" name="logo" after="nav.toggle">
+                                <arguments>
+                                    <argument name="logo_img_width" xsi:type="number">59</argument>
+                                    <argument name="logo_img_height" xsi:type="number">20</argument>
+                                </arguments>
+                            </block>
+                        </container>
+                        <container name="navbar-collapse" htmlTag="div" htmlClass="collapse navbar-collapse" htmlId="wg-navbar-collapse">
+                            <block class="Magento\Theme\Block\Html\Topmenu" name="catalog.topnav"
+                                   template="html/topmenu.phtml" ttl="3600" before="-">
+                                <arguments>
+                                    <argument name="parent_item_class" xsi:type="string">dropdown</argument>
+                                    <argument name="submenu_class" xsi:type="string">dropdown-menu</argument>
+                                </arguments>
+                            </block>
+                        </container>
                     </container>
                 </container>
             </container>
         </referenceContainer>
         
-        <referenceContainer name="footer-container" htmlClass="page-footer">
+        <referenceContainer name="footer-container" htmlClass="container">
             <block name="footer-hr" class="Magento\Framework\View\Element\Template"
                    template="Magento_Theme::html/footer/hr.phtml"/>
             <container name="footer-row-1" htmlTag="div" htmlClass="row">

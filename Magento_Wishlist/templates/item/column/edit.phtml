@@ -1,0 +1,18 @@
+<?php
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/* @var \Magento\Wishlist\Model\Item $item */
+$item = $block->getItem();
+$product = $item->getProduct();
+?>
+
+<?php if ($product->isVisibleInSiteVisibility()): ?>
+    <a class="btn btn-primary" href="<?php /* @escapeNotVerified */ echo $block->getItemConfigureUrl($item) ?>">
+        <span><?php /* @escapeNotVerified */ echo __('Edit') ?></span>
+    </a>
+<?php endif ?>
