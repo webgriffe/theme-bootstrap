@@ -15,88 +15,111 @@
             <span class="glyphicon glyphicon-remove"></span>
         </button>
     </div>
+
     <div class="panel-body">
-        <!-- ko if: getCartParam('summary_count') -->
-        <div class="items-total">
-            <span class="count"><!-- ko text: getCartParam('summary_count') --><!-- /ko --></span>
-            <!-- ko if: getCartParam('summary_count') == 1 -->
-            <!-- ko i18n: 'item' --><!-- /ko -->
-            <!-- /ko -->
-            <!-- ko if: getCartParam('summary_count') > 1 -->
-            <!-- ko i18n: 'items' --><!-- /ko -->
-            <!-- /ko -->
-        </div>
-
-        <!-- ko if: getCartParam('possible_onepage_checkout') -->
-        <!-- ko foreach: getRegion('subtotalContainer') -->
-        <!-- ko template: getTemplate() --><!-- /ko -->
-        <!-- /ko -->
-        <!-- /ko -->
-
-        <!-- ko foreach: getRegion('extraInfo') -->
-        <!-- ko template: getTemplate() --><!-- /ko -->
-        <!-- /ko -->
-
-        <!-- ko if: getCartParam('possible_onepage_checkout') -->
-        <div class="actions">
-            <div class="primary">
-                <button
-                    id="top-cart-btn-checkout"
-                    type="button"
-                    class="action primary checkout"
-                    data-bind="attr: {title: $t('Go to Checkout')}">
-                    <!-- ko i18n: 'Go to Checkout' --><!-- /ko -->
-                </button>
-                <div data-bind="html: getCartParam('extra_actions')"></div>
-            </div>
-        </div>
-        <!-- /ko -->
-        <!-- /ko -->
-
-        <!-- ko if: getCartParam('summary_count') -->
-        <strong class="subtitle"><!-- ko i18n: 'Recently added item(s)' --><!-- /ko --></strong>
-        <div data-action="scroll" class="minicart-items-wrapper">
-            <ol id="mini-cart" class="minicart-items" data-bind="foreach: { data: getCartParam('items'), as: 'item' }">
-                <!-- ko foreach: $parent.getRegion($parent.getItemRenderer(item.product_type)) -->
-                <!-- ko template: {name: getTemplate(), data: item, afterRender: function() {$parents[1].initSidebar()}} --><!-- /ko -->
+        <ul class="dropdown-cart" role="menu">
+            <!-- ko if: getCartParam('summary_count') -->
+            <div class="items-total">
+                <span class="count"><!-- ko text: getCartParam('summary_count') --><!-- /ko --></span>
+                <!-- ko if: getCartParam('summary_count') == 1 -->
+                <!-- ko i18n: 'item' --><!-- /ko -->
                 <!-- /ko -->
-            </ol>
-        </div>
-        <!-- /ko -->
-
-        <!-- ko ifnot: getCartParam('summary_count') -->
-        <strong class="subtitle empty" data-bind="visible: closeSidebar()">
-            <!-- ko i18n: 'You have no items in your shopping cart.' --><!-- /ko -->
-        </strong>
-        <!-- ko if: getCartParam('cart_empty_message') -->
-        <p class="minicart empty text"><!-- ko text: getCartParam('cart_empty_message') --><!-- /ko --></p>
-
-        <div class="actions">
-            <div class="secondary">
-                <a class="action viewcart" data-bind="attr: {href: shoppingCartUrl}">
-                    <span><!-- ko text: $t('View and edit cart') --><!-- /ko --></span>
-                </a>
+                <!-- ko if: getCartParam('summary_count') > 1 -->
+                <!-- ko i18n: 'items' --><!-- /ko -->
+                <!-- /ko -->
             </div>
-        </div>
-        <!-- /ko -->
-        <!-- /ko -->
 
-        <!-- ko if: getCartParam('summary_count') -->
-        <div class="actions">
-            <div class="secondary">
-                <a class="action viewcart" data-bind="attr: {href: shoppingCartUrl}">
-                    <span><!-- ko i18n: 'View and edit cart' --><!-- /ko --></span>
-                </a>
-            </div>
-        </div>
-        <!-- /ko -->
-
-        <div id="minicart-widgets" class="minicart-widgets">
-            <!-- ko foreach: getRegion('promotion') -->
+            <!-- ko if: getCartParam('possible_onepage_checkout') -->
+            <!-- ko foreach: getRegion('subtotalContainer') -->
             <!-- ko template: getTemplate() --><!-- /ko -->
             <!-- /ko -->
+            <!-- /ko -->
+
+            <!-- ko foreach: getRegion('extraInfo') -->
+            <!-- ko template: getTemplate() --><!-- /ko -->
+            <!-- /ko -->
+
+            <!--li>
+                <span class="item">
+                    <span class="item-left">
+                        <img src="http://lorempixel.com/50/50/" alt="">
+                        <span class="item-info">
+                            <span>Item name</span>
+                            <span>23$</span>
+                        </span>
+                    </span>
+
+                    <span class="item-right">
+                        <button class="btn btn-xs btn-danger pull-right">x</button>
+                    </span>
+                </span>
+            </li-->
+
+            <li class="divider"></li>
+
+            <!-- ko if: getCartParam('possible_onepage_checkout') -->
+            <div class="actions">
+                <div class="primary">
+                    <button
+                        id="top-cart-btn-checkout"
+                        type="button"
+                        class="action primary checkout"
+                        data-bind="attr: {title: $t('Go to Checkout')}">
+                        <!-- ko i18n: 'Go to Checkout' --><!-- /ko -->
+                    </button>
+                    <div data-bind="html: getCartParam('extra_actions')"></div>
+                </div>
+            </div>
+            <!-- /ko -->
+            <!-- /ko -->
+
+            <!-- ko if: getCartParam('summary_count') -->
+            <strong class="subtitle"><!-- ko i18n: 'Recently added item(s)' --><!-- /ko --></strong>
+            <div data-action="scroll" class="minicart-items-wrapper">
+                <ol id="mini-cart" class="minicart-items" data-bind="foreach: { data: getCartParam('items'), as: 'item' }">
+                    <!-- ko foreach: $parent.getRegion($parent.getItemRenderer(item.product_type)) -->
+                    <!-- ko template: {name: getTemplate(), data: item, afterRender: function() {$parents[1].initSidebar()}} --><!-- /ko -->
+                    <!-- /ko -->
+                </ol>
+            </div>
+            <!-- /ko -->
+
+            <!-- ko ifnot: getCartParam('summary_count') -->
+            <strong class="subtitle empty" data-bind="visible: closeSidebar()">
+                <!-- ko i18n: 'You have no items in your shopping cart.' --><!-- /ko -->
+            </strong>
+            <!-- ko if: getCartParam('cart_empty_message') -->
+            <p class="minicart empty text"><!-- ko text: getCartParam('cart_empty_message') --><!-- /ko --></p>
+
+            <div class="actions">
+                <div class="secondary">
+                    <a class="action viewcart" data-bind="attr: {href: shoppingCartUrl}">
+                        <span><!-- ko text: $t('View and edit cart') --><!-- /ko --></span>
+                    </a>
+                </div>
+            </div>
+            <!-- /ko -->
+            <!-- /ko -->
+
+            <!-- ko if: getCartParam('summary_count') -->
+            <div class="actions">
+                <div class="secondary">
+                    <a class="action viewcart" data-bind="attr: {href: shoppingCartUrl}">
+                        <span><!-- ko i18n: 'View and edit cart' --><!-- /ko --></span>
+                    </a>
+                </div>
+            </div>
+            <!-- /ko -->
+
+            <div id="minicart-widgets" class="minicart-widgets">
+                <!-- ko foreach: getRegion('promotion') -->
+                <!-- ko template: getTemplate() --><!-- /ko -->
+                <!-- /ko -->
+            </div>
+            
+            <li><a class="text-center" href="">View Cart</a></li>
         </div>
-    </div>
+    </ul>
 </div>
 
 <!-- ko foreach: getRegion('sign-in-popup') -->

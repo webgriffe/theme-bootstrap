@@ -23,41 +23,37 @@
         <form method="post" class="form reorder"
               action="<?php /* @escapeNotVerified */ echo $block->getFormActionUrl() ?>" id="reorder-validate-detail">
             <strong class="subtitle"><?php /* @escapeNotVerified */ echo __('Last Ordered Items') ?></strong>
-            <ol id="cart-sidebar-reorder" class="product-items product-items-names"
+            <div id="cart-sidebar-reorder" class="product-items product-items-names"
                 data-bind="foreach: lastOrderedItems().items">
-                <li class="product-item">
-                    <div class="field item choice no-display" data-bind="css: {'no-display': !is_saleable}">
-                        <label class="label" data-bind="attr: {'for': 'reorder-item-' + id}">
-                            <span><?php /* @escapeNotVerified */ echo __('Add to Cart') ?></span>
+                <div class="field item choice no-display" data-bind="css: {'no-display': !is_saleable}">
+                    <div class="checkbox">
+                        <label data-bind="attr: {'for': 'reorder-item-' + id}">
+                        
+                            <input type="checkbox" name="order_items[]" data-bind="attr: {id: 'reorder-item-' + id, value: id}"
+                            title="<?php /* @escapeNotVerified */ echo __('Add to Cart') ?>"
+                            class="checkbox" data-validate='{"validate-one-checkbox-required-by-name": true}'/>
+
+                            <strong class="product-item-name">
+                                <a data-bind="attr: {href: url}" class="product-item-link">
+                                    <span data-bind="text: name"></span>
+                                </a>
+                            </strong>
                         </label>
-                        <div class="control">
-                            <input type="checkbox" name="order_items[]"
-                                   data-bind="attr: {id: 'reorder-item-' + id, value: id}"
-                                   title="<?php /* @escapeNotVerified */ echo __('Add to Cart') ?>"
-                                   class="checkbox" data-validate='{"validate-one-checkbox-required-by-name": true}'/>
-                        </div>
                     </div>
-                    <strong class="product-item-name">
-                        <a data-bind="attr: {href: url}" class="product-item-link">
-                            <span data-bind="text: name"></span>
-                        </a>
-                    </strong>
-                </li>
-            </ol>
-            <div id="cart-sidebar-reorder-advice-container"></div>
-            <div class="actions-toolbar">
-                <div class="primary no-display"
-                     data-bind="css: {'no-display': !lastOrderedItems().isShowAddToCart}">
-                    <button type="submit" title="<?php /* @escapeNotVerified */ echo __('Add to Cart') ?>" class="btn btn-primary">
-                        <span><?php /* @escapeNotVerified */ echo __('Add to Cart') ?></span>
-                    </button>
-                </div>
-                <div class="secondary">
-                    <a class="action view" href="<?php /* @escapeNotVerified */ echo $block->getUrl('customer/account') ?>">
-                        <span><?php /* @escapeNotVerified */ echo __('View All'); ?></span>
-                    </a>
                 </div>
             </div>
+
+            <div id="cart-sidebar-reorder-advice-container"></div>
+
+            <!--div class="primary no-display" data-bind="css: {'no-display': !lastOrderedItems().isShowAddToCart}"-->
+                <button type="submit" title="<?php /* @escapeNotVerified */ echo __('Add to Cart') ?>" class="btn btn-primary">
+                    <span><?php /* @escapeNotVerified */ echo __('Add to Cart') ?></span>
+                </button>
+            <!--/div-->
+
+            <a class="btn btn-info" href="<?php /* @escapeNotVerified */ echo $block->getUrl('customer/account') ?>">
+                <span><?php /* @escapeNotVerified */ echo __('View All'); ?></span>
+            </a>
         </form>
     </div>
     <script>

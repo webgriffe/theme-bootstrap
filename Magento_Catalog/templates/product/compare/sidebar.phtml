@@ -29,7 +29,7 @@
                 <span class="glyphicon glyphicon-equalizer"></span>
                 <?php /* @escapeNotVerified */ echo __('Compare') ?>
             </a>
-            <a id="compare-clear-all" href="#" class="action clear btn-link" data-post="<?=$block->escapeHtml(
+            <a id="compare-clear-all" href="#" class="btn btn-danger" data-post="<?=$block->escapeHtml(
                 $this->helper('Magento\Catalog\Helper\Product\Compare')->getPostDataClearList()
             ) ?>">
                 <?php /* @escapeNotVerified */ echo __('Clear All') ?>

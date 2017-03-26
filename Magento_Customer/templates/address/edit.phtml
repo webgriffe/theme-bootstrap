@@ -95,16 +95,12 @@
 
         <div class="form-group field zip required">
             <label for="zip"><span><?php /* @escapeNotVerified */ echo __('Zip/Postal Code') ?></span></label>
-            <div class="control">
-                <input type="text" name="postcode" value="<?php echo $block->escapeHtml($block->getAddress()->getPostcode()) ?>" title="<?php /* @escapeNotVerified */ echo __('Zip/Postal Code') ?>" id="zip" class="form-control validate-zip-international <?php /* @escapeNotVerified */ echo $this->helper('Magento\Customer\Helper\Address')->getAttributeValidationClass('postcode') ?>">
-            </div>
+            <input type="text" name="postcode" value="<?php echo $block->escapeHtml($block->getAddress()->getPostcode()) ?>" title="<?php /* @escapeNotVerified */ echo __('Zip/Postal Code') ?>" id="zip" class="form-control validate-zip-international <?php /* @escapeNotVerified */ echo $this->helper('Magento\Customer\Helper\Address')->getAttributeValidationClass('postcode') ?>">
         </div>
 
         <div class="form-group field country required">
             <label for="country"><span><?php /* @escapeNotVerified */ echo __('Country') ?></span></label>
-            <div class="control">
-                <?php echo $block->getCountryHtmlSelect() ?>
-            </div>
+            <?php echo $block->getCountryHtmlSelect() ?>
         </div>
 
         <?php if ($block->isDefaultBilling()): ?>
