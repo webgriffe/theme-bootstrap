@@ -18,6 +18,7 @@
         <referenceContainer name="header.panel.wrapper" remove="true" />
         <referenceBlock name="navigation.sections" remove="true" />
         <move element="breadcrumbs" destination="main.content" before="-" />
+        <move element="header" destination="sub.header.container" before="-" />
 
         <referenceContainer name="header.container">
             <container name="sub.header.container" htmlTag="div" htmlClass="container">

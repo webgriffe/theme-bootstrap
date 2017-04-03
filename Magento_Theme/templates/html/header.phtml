@@ -1,0 +1,23 @@
+<?php
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/**
+ * @var \Magento\Theme\Block\Html\Header $block
+ */
+$welcomeMessage = $block->getWelcome();
+?>
+<?php switch ($block->getShowPart()):
+    case 'welcome': ?>
+        <div class="alert alert-info"><?=$block->escapeHtml($welcomeMessage) ?></div>
+    <?php break; ?>
+
+    <?php case 'other': ?>
+        <?php echo $block->getChildHtml(); ?>
+    <?php break; ?>
+
+<?php endswitch; ?>
