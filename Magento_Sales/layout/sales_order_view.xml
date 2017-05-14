@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+       <move element="order.status" destination="content" before="-" />
+       <move element="order.date" destination="content" after="order.status" />
+       <move element="order.actions.container" destination="content" after="order.date" />
+       <referenceBlock name="order_totals">
+       	<arguments>
+            <argument name="label_properties" xsi:type="string">colspan="4" class="text-right"</argument>
+        </arguments>
+       </referenceBlock>
+    </body>
+</page>
