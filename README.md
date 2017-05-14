@@ -51,11 +51,11 @@ This theme is still work in progress. Here is a list of done / todo sections:
 	* ~~Request~~
 	* Set Password
 * My Account
-	* Account Dashboard
+	* ~~Account Dashboard~~
 	* ~~Account Information~~
-	* Address Book
+	* ~~Address Book~~
 	* My Downloadable Products
-	* My Orders
+	* ~~My Orders~~
 	* My Credit Cards
 	* Newsletter Subscriptions
 	* Billing Agreements
