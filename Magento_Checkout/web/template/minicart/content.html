@@ -17,7 +17,7 @@
     </div>
     <div class="panel-body">
         <!-- ko if: getCartParam('summary_count') -->
-        <div class="items-total">
+        <div class="items-total lead">
             <span class="count"><!-- ko text: getCartParam('summary_count') --><!-- /ko --></span>
             <!-- ko if: getCartParam('summary_count') == 1 -->
             <!-- ko i18n: 'item' --><!-- /ko -->
@@ -40,13 +40,15 @@
         <!-- ko if: getCartParam('possible_onepage_checkout') -->
         <div class="actions">
             <div class="primary">
-                <button
-                    id="top-cart-btn-checkout"
-                    type="button"
-                    class="action primary checkout"
-                    data-bind="attr: {title: $t('Go to Checkout')}">
-                    <!-- ko i18n: 'Go to Checkout' --><!-- /ko -->
-                </button>
+                <p>
+                    <button
+                        id="top-cart-btn-checkout"
+                        type="button"
+                        class="btn btn-primary center-block action primary checkout"
+                        data-bind="attr: {title: $t('Go to Checkout')}">
+                        <!-- ko i18n: 'Go to Checkout' --><!-- /ko -->
+                    </button>
+                </p>
                 <div data-bind="html: getCartParam('extra_actions')"></div>
             </div>
         </div>
@@ -55,12 +57,16 @@
 
         <!-- ko if: getCartParam('summary_count') -->
         <strong class="subtitle"><!-- ko i18n: 'Recently added item(s)' --><!-- /ko --></strong>
-        <div data-action="scroll" class="minicart-items-wrapper">
-            <ol id="mini-cart" class="minicart-items" data-bind="foreach: { data: getCartParam('items'), as: 'item' }">
-                <!-- ko foreach: $parent.getRegion($parent.getItemRenderer(item.product_type)) -->
-                <!-- ko template: {name: getTemplate(), data: item, afterRender: function() {$parents[1].initSidebar()}} --><!-- /ko -->
-                <!-- /ko -->
-            </ol>
+        <div class="container-fluid">
+            <div class="row">
+                <div data-action="scroll" class="minicart-items-wrapper panel-body">
+                    <ol id="mini-cart" class="minicart-items list-unstyled" data-bind="foreach: { data: getCartParam('items'), as: 'item' }">
+                        <!-- ko foreach: $parent.getRegion($parent.getItemRenderer(item.product_type)) -->
+                        <!-- ko template: {name: getTemplate(), data: item, afterRender: function() {$parents[1].initSidebar()}} --><!-- /ko -->
+                        <!-- /ko -->
+                    </ol>
+                </div>
+            </div>
         </div>
         <!-- /ko -->
 
@@ -73,7 +79,7 @@
 
         <div class="actions">
             <div class="secondary">
-                <a class="action viewcart" data-bind="attr: {href: shoppingCartUrl}">
+                <a class="action viewcart btn btn-primary center-block" data-bind="attr: {href: shoppingCartUrl}">
                     <span><!-- ko text: $t('View and edit cart') --><!-- /ko --></span>
                 </a>
             </div>
@@ -84,7 +90,7 @@
         <!-- ko if: getCartParam('summary_count') -->
         <div class="actions">
             <div class="secondary">
-                <a class="action viewcart" data-bind="attr: {href: shoppingCartUrl}">
+                <a class="action viewcart btn btn-primary center-block" data-bind="attr: {href: shoppingCartUrl}">
                     <span><!-- ko i18n: 'View and edit cart' --><!-- /ko --></span>
                 </a>
             </div>

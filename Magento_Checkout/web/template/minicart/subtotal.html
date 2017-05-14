@@ -1,0 +1,19 @@
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<div class="subtotal container-fluid">
+    <div class="row">
+    	<span class="label label-primary pull-left">
+        <!-- ko i18n: 'Cart Subtotal' --><!-- /ko -->
+	    </span>
+
+	    <div class="pull-right">
+	    	<!-- ko foreach: elems -->
+		        <!-- ko template: getTemplate() --><!-- /ko -->
+		    <!-- /ko -->
+	    </div>
+    </div>
+</div>
