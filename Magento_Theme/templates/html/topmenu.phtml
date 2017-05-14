@@ -15,7 +15,7 @@
  */
 ?>
 <?php $columnsLimit = $block->getColumnsLimit() ?: 0; ?>
-<?php $_menu = $block->getHtml('level-top', 'submenu', $columnsLimit) ?>
+<?php $_menu = $block->getHtml('level-top', 'dropdown-menu', $columnsLimit) ?>
 
 <ul class="nav navbar-nav">
     <?php /* @escapeNotVerified */ echo $_menu; ?>

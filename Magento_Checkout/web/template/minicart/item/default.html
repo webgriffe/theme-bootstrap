@@ -1,0 +1,112 @@
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<li class="item product product-item container-fluid" data-role="product-item">
+    <div class="row">
+        <div class="product row">
+            <!-- ko if: product_has_url -->
+            <a data-bind="attr: {href: product_url, title: product_name}" tabindex="-1" class="product-item-photo col-xs-4">
+                <!-- ko foreach: $parent.getRegion('itemImage') -->
+                <!-- ko template: {name: getTemplate(), data: item.product_image} -->
+                <!-- /ko -->
+                <!-- /ko -->
+            </a>
+            <!-- /ko -->
+            <!-- ko ifnot: product_has_url -->
+            <span class="product-item-photo col-xs-4">
+            <!-- ko foreach: $parent.getRegion('itemImage') -->
+                <!-- ko template: {name: getTemplate(), data: item.product_image} --><!-- /ko -->
+            <!-- /ko -->
+        </span>
+            <!-- /ko -->
+            <div class="product-item-details col-xs-8">
+                <strong class="product-item-name">
+                <!-- ko if: product_has_url -->
+                <a data-bind="attr: {href: product_url}, text: product_name"></a>
+                <!-- /ko -->
+                <!-- ko ifnot: product_has_url -->
+                    <!-- ko text: product_name --><!-- /ko -->
+                <!-- /ko -->
+            </strong>
+                <!-- ko if: options.length -->
+                <div class="product options dropdown" data-mage-init='{"collapsible":{"openedState": "active", "saveState": false}}'>
+                    <span data-role="title" class="btn btn-primary btn-xs dropdown-toggle"><!-- ko i18n: 'See Details' --><!-- /ko --></span>
+                    <div data-role="content" class="dropdown-menu panel panel-default">
+                        <div class="subtitle panel-heading"><small><!-- ko i18n: 'Options Details' --><!-- /ko --></small></div>
+                        <div cclass="container-fluid">
+                            <dl class="product options list panel-body">
+                                <!-- ko foreach: { data: options, as: 'option' } -->
+                                <dt class="label label-primary col-xs-6">
+                                    <!-- ko text: option.label -->
+                                    <!-- /ko -->
+                                </dt>
+                                <dd class="values col-xs-6">
+                                    <!-- ko if: Array.isArray(option.value) -->
+                                    <span data-bind="html: option.value.join('<br>')"></span>
+                                    <!-- /ko -->
+                                    <!-- ko ifnot: Array.isArray(option.value) -->
+                                    <span data-bind="html: option.value"></span>
+                                    <!-- /ko -->
+                                </dd>
+                                <!-- /ko -->
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+                <!-- /ko -->
+                <div class="product-item-pricing">
+                    <!-- ko if: canApplyMsrp -->
+                    <div class="details-map">
+                        <span class="label" data-bind="i18n: 'Price'"></span>
+                        <span class="value" data-bind="i18n: 'See price before order confirmation.'"></span>
+                    </div>
+                    <!-- /ko -->
+                    <!-- ko ifnot: canApplyMsrp -->
+                    <!-- ko foreach: $parent.getRegion('priceSidebar') -->
+                    <!-- ko template: {name: getTemplate(), data: item.product_price, as: 'price'} -->
+                    <!-- /ko -->
+                    <!-- /ko -->
+                    <!-- /ko -->
+                    <div class="container-fluid">
+                        <div class="details-qty qty row">
+                            <label class="label label-default" data-bind="i18n: 'Qty', attr: {
+                               for: 'cart-item-'+item_id+'-qty'}"></label>
+                            <input data-bind="attr: {
+                                   id: 'cart-item-'+item_id+'-qty',
+                                   'data-cart-item': item_id,
+                                   'data-item-qty': qty,
+                                   'data-cart-item-id': product_sku
+                                   }, value: qty" type="number" size="4" class="item-qty form-control cart-item-qty">
+                            <button data-bind="attr: {
+                                   id: 'update-cart-item-'+item_id,
+                                   'data-cart-item': item_id,
+                                   title: $t('Update')
+                                   }" class="update-cart-item btn btn-primary btn-xs" style="display: none">
+                                <span data-bind="i18n: 'Update'"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product actions">
+                    <!-- ko if: is_visible_in_site_visibility -->
+                    <div class="primary pull-left">
+                        <a data-bind="attr: {href: configure_url, title: $t('Edit item')}" class="action edit">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                            <span data-bind="i18n: 'Edit'"></span>
+                        </a>
+                    </div>
+                    <!-- /ko -->
+                    <div class="secondary pull-right">
+                        <a href="#" data-bind="attr: {'data-cart-item': item_id, title: $t('Remove item')}" class="action delete">
+                            <span class="glyphicon glyphicon-remove"></span>
+                            <span data-bind="i18n: 'Remove'"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</li>
