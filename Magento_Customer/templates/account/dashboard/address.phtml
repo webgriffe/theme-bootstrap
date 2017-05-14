@@ -1,0 +1,47 @@
+<?php
+// @codingStandardsIgnoreFile
+
+/** @var \Magento\Customer\Block\Account\Dashboard\Address $block */
+?>
+<div class="panel panel-default dashboard-addresses">
+    <div class="panel-heading">
+        <strong><?php /* @escapeNotVerified */ echo __('Address Book') ?></strong>
+        <a class="action edit" href="<?php /* @escapeNotVerified */ echo $block->getAddressBookUrl() ?>"><span><?php /* @escapeNotVerified */ echo __('Manage Addresses') ?></span></a>
+    </div>
+    <div class="panel-body">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="box box-billing-address">
+                        <strong class="box-title">
+                            <span><?php /* @escapeNotVerified */ echo __('Default Billing Address') ?></span>
+                        </strong>
+                        <div class="box-content">
+                            <address>
+                                <?php echo $block->getPrimaryBillingAddressHtml() ?>
+                            </address>
+                        </div>
+                        <div class="box-actions">
+                            <a class="btn btn-primary edit" href="<?php /* @escapeNotVerified */ echo $block->getPrimaryBillingAddressEditUrl() ?>" data-ui-id="default-billing-edit-link"><span><?php /* @escapeNotVerified */ echo __('Edit Address') ?></span></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="box box-shipping-address">
+                        <strong class="box-title">
+                            <span><?php /* @escapeNotVerified */ echo __('Default Shipping Address') ?></span>
+                        </strong>
+                        <div class="box-content">
+                            <address>
+                                <?php echo $block->getPrimaryShippingAddressHtml() ?>
+                            </address>
+                        </div>
+                        <div class="box-actions">
+                            <a class="btn btn-primary edit" href="<?php /* @escapeNotVerified */ echo $block->getPrimaryShippingAddressEditUrl() ?>" data-ui-id="default-shipping-edit-link"><span><?php /* @escapeNotVerified */ echo __('Edit Address') ?></span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

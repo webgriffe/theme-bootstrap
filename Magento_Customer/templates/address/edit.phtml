@@ -108,7 +108,7 @@
         </div>
 
         <?php if ($block->isDefaultBilling()): ?>
-            <div class="message info"><?php /* @escapeNotVerified */ echo __("It's a default billing address.") ?></div>
+            <div class="alert alert-info"><?php /* @escapeNotVerified */ echo __("It's a default billing address.") ?></div>
         <?php elseif ($block->canSetAsDefaultBilling()): ?>
             <div class="form-group field choice set billing">
                 <label for="primary_billing">
@@ -120,7 +120,7 @@
         <?php endif; ?>
 
         <?php if ($block->isDefaultShipping()): ?>
-            <div class="message info"><?php /* @escapeNotVerified */ echo __("It's a default shipping address.") ?></div>
+            <div class="alert alert-info"><?php /* @escapeNotVerified */ echo __("It's a default shipping address.") ?></div>
         <?php elseif ($block->canSetAsDefaultShipping()): ?>
             <div class="form-group field choice set shipping">
                 <input type="checkbox" id="primary_shipping" name="default_shipping" value="1" class="checkbox">
@@ -135,7 +135,7 @@
         <span><?php /* @escapeNotVerified */ echo __('Save Address') ?></span>
     </button>
 
-    <a class="btn btn-danger" href="<?php echo $block->escapeUrl($block->getBackUrl()) ?>">
+    <a class="btn btn-link" href="<?php echo $block->escapeUrl($block->getBackUrl()) ?>">
         <span><?php /* @escapeNotVerified */ echo __('Go back') ?></span>
     </a>
 </form>
