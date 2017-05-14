@@ -1,0 +1,66 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php /** @var $block \Magento\Sales\Block\Order\Info */ ?>
+<?php $_order = $block->getOrder() ?>
+<div class="block block-order-details-view">
+    <h4>
+       <?php /* @escapeNotVerified */ echo __('Order Information') ?>
+    </h4>
+    <div class="block-content">
+    <?php if (!$_order->getIsVirtual()): ?>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="panel panel-default box box-order-shipping-address">
+                <div class="panel-heading box-title"><strong><?php /* @escapeNotVerified */ echo __('Shipping Address') ?></strong></div>
+                    <div class="panel-body box-order-shipping-address">
+                        <address><?php /* @escapeNotVerified */ echo $block->getFormattedAddress($_order->getShippingAddress()); ?></address>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="panel panel-default box box-order-shipping-method">
+                    <div class="panel-heading">
+                        <strong><?php /* @escapeNotVerified */ echo __('Shipping Method') ?></strong>
+                    </div>
+                    <div class="panel-body">
+                    <?php if ($_order->getShippingDescription()): ?>
+                        <?php echo $block->escapeHtml($_order->getShippingDescription()) ?>
+                    <?php else: ?>
+                        <?php /* @escapeNotVerified */ echo __('No shipping information available'); ?>
+                    <?php endif; ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php endif; ?>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="panel panel-default order-billing-address">
+                    <div class="panel-heading">
+                        <strong><?php /* @escapeNotVerified */ echo __('Billing Address') ?></strong>
+                    </div>
+                    <div class="panel-body">
+                        <address><?php /* @escapeNotVerified */ echo $block->getFormattedAddress($_order->getBillingAddress()); ?></address>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="panel panel-default order-billing-method">
+                    <div class="panel-heading">
+                        <strong><?php /* @escapeNotVerified */ echo __('Payment Method') ?></strong>
+                    </div>
+                    <div class="panel-body">
+                        <?php echo $block->getPaymentInfoHtml() ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
