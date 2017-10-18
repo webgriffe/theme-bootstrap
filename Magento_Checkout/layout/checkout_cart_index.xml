@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="checkout_cart_item_renderers"/>
+    <body>
+        <referenceContainer name="content">
+            <referenceContainer name="checkout.cart.items" as="with-items">
+                <referenceContainer name="checkout.cart.container" htmlTag="div" htmlClass="cart-container row" before="-">
+                    <referenceContainer name="cart.summary" label="Cart Summary Container" htmlTag="div" htmlClass="cart-summary col-sm-3 pull-right" after="-">
+                        <block class="Magento\Framework\View\Element\Template" name="checkout.cart.summary.title" before="-" template="Magento_Theme::text.phtml">
+                            <arguments>
+                                <argument translate="true" name="text" xsi:type="string"></argument>
+                                <argument name="tag" xsi:type="string">strong</argument>
+                                <argument name="css_class" xsi:type="string"></argument>
+                            </arguments>
+                        </block>
+                    </referenceContainer>
+                </referenceContainer>
+            </referenceContainer>
+        </referenceContainer>
+    </body>
+</page>
