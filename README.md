@@ -15,14 +15,15 @@ Installation
 Add this repository to Composer's repositories and then require the theme:
 
 ```
-$ composer config repo.bootstrap-theme vcs https://github.com/webgriffe/theme-bootstrap.git
-$ composer require webgriffe/theme-frontend-bootstrap "dev-master"
+composer config repo.bootstrap-menu vcs https://github.com/webgriffe/module-bootstrap-menu
+composer config repo.bootstrap-theme vcs https://github.com/webgriffe/theme-bootstrap.git
+composer require webgriffe/theme-frontend-bootstrap "dev-master"
 ```
 
 Then you should run Magento's setup upgrade:
 
 ```
-$ php bin/magento setup:upgrade
+php bin/magento setup:upgrade
 ```
 
 Now you activate the Bootstrap Theme under `Content -> Design -> Configuration.`.
@@ -30,9 +31,9 @@ Now you activate the Bootstrap Theme under `Content -> Design -> Configuration.`
 Lastly clear Magento generated suff and caches:
 
 ```
-$ rm -rf pub/static/frontend/
-$ rm -rf var/view_preprocessed/css/frontend/
-$ php bin/magento cache:clean
+rm -rf pub/static/frontend/
+rm -rf var/view_preprocessed/css/frontend/
+php bin/magento cache:clean
 ```
 
 ToDo
