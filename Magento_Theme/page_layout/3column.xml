@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_layout.xsd">
+    <update handle="1column"/>
+    <referenceContainer name="columns" htmlClass="row">
+        <container name="div.sidebar.main" htmlTag="div" htmlClass="hidden-xs col-sm-3" before="main">
+            <container name="sidebar.main" as="sidebar_main" label="Sidebar Left"/>
+            <container name="div.sidebar.additional" htmlTag="div" htmlClass="sidebar sidebar-additional2">
+                <container name="sidebar.additional" as="sidebar_additional" label="Sidebar Additional"/>
+            </container>
+        </container>
+        <referenceContainer name="main" htmlClass="col-xs-12 col-sm-6">
+        </referenceContainer>
+        <container name="div.sidebar.right" htmlTag="div" htmlClass="hidden-xs col-sm-3" after="main">
+            <container name="sidebar.right" as="sidebar_right" label="Sidebar Right"/>
+            <container name="div.sidebar.additional.right" htmlTag="div" htmlClass="sidebar sidebar-additional-right">
+                <container name="sidebar.additional.right" as="sidebar_additional_right" label="Sidebar Additional Right"/>
+            </container>
+        </container>
+    </referenceContainer>
+</layout>
