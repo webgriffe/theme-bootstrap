@@ -9,9 +9,9 @@
     <update handle="checkout_cart_item_renderers"/>
     <body>
         <referenceContainer name="content">
-            <referenceContainer name="checkout.cart.items" as="with-items">
-                <referenceContainer name="checkout.cart.container" htmlTag="div" htmlClass="cart-container row" before="-">
-                    <referenceContainer name="cart.summary" label="Cart Summary Container" htmlTag="div" htmlClass="cart-summary col-sm-3 pull-right" after="-">
+            <referenceContainer name="checkout.cart.items">
+                <referenceContainer name="checkout.cart.container" htmlTag="div" htmlClass="cart-container row">
+                    <referenceContainer name="cart.summary" label="Cart Summary Container" htmlTag="div" htmlClass="cart-summary col-sm-3 pull-right">
                         <block class="Magento\Framework\View\Element\Template" name="checkout.cart.summary.title" before="-" template="Magento_Theme::text.phtml">
                             <arguments>
                                 <argument translate="true" name="text" xsi:type="string"></argument>
